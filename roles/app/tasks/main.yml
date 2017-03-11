@@ -4,9 +4,9 @@
 
 - name: make dirs
   file:
-    path={{ item }}
-    state=directory
-    owner={{ unicorn_user }}
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ unicorn_user }}"
   with_items:
     - "{{ app_path }}"
     - "{{ shared_path }}"
@@ -23,17 +23,17 @@
 
 - name: copy seeds.rb
   copy:
-    src=seeds.rb
-    dest={{ config_path }}/seeds.rb
-    owner={{ unicorn_user }}
+    src: seeds.rb
+    dest: "{{ config_path }}/seeds.rb"
+    owner: "{{ unicorn_user }}"
   tags: app_templates
 
 - name: template files
   template:
-    src={{ item.src }}
-    dest={{ item.dest }}
-    owner={{ unicorn_user }}
-    mode=0775
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ unicorn_user }}"
+    mode: 0775
   with_items:
     - { src: "application.yml.j2", dest: "{{ config_path }}/application.yml" }
     - { src: "post-receive.j2", dest: "{{ config_path }}/post-receive" }
@@ -54,10 +54,10 @@
 
 - name: get l10n repo
   git:
-    repo={{ l10n_repo }}
-    dest={{ l10n_path }}
-    version={{ l10n_git_version }}
-    force=yes
+    repo: "{{ l10n_repo }}"
+    dest: "{{ l10n_path }}"
+    version: "{{ l10n_git_version }}"
+    force: yes
   tags: l10n
 
 

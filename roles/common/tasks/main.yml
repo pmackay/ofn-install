@@ -2,15 +2,15 @@
 
 - name: update apt
   apt:
-    update_cache=yes
+    update_cache: yes
   become: yes
   tags: packages
 
   #TODO remove unnecesary packages from this list.
 - name: install base packages
   apt:
-    pkg="{{ item }}"
-    state=present
+    pkg: "{{ item }}"
+    state: present
   become: yes
   with_items:
     - acl
@@ -40,6 +40,6 @@
 
 - name: configure monit
   template:
-    src=monit.j2
-    dest=/etc/monit/conf.d/{{ app }}
+    src: monit.j2
+    dest: "/etc/monit/conf.d/{{ app }}"
   become: yes

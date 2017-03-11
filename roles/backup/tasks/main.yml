@@ -20,18 +20,18 @@
 
 - name: fetch database to local
   fetch:
-    src={{ backup_path }}/{{ backup_filename }}
-    dest={{ local_backup_path }}/{{ domain }}/databases/
-    fail_on_missing=yes
-    flat=yes
+    src: "{{ backup_path }}/{{ backup_filename }}"
+    dest: "{{ local_backup_path }}/{{ domain }}/databases/"
+    fail_on_missing: yes
+    flat: yes
 
 # But we don't bother making a whole new copy of all the files every time, just rsync them.
 - name: sync public files to local
   synchronize:
-    mode=pull
-    src={{ current_path }}/public
-    dest={{ local_rsync_path }}/{{ domain }}/files
-    copy_links=yes
+    mode: pull
+    src: "{{ current_path }}/public"
+    dest: "{{ local_rsync_path }}/{{ domain }}/files"
+    copy_links: yes
   tags: rsync
 
 # @TODO just delete anything older than the newest {{ num_remote_backups }} files

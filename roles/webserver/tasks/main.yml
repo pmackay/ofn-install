@@ -2,11 +2,11 @@
 
 - name: copy unicorn files
   template:
-    src={{ item.src }}
-    dest={{ item.dest }}
-    mode={{ item.mode }}
-    owner={{ item.owner }}
-    group={{ item.group }}
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
   become: yes
   with_items:
     - { src: "unicorn_init.j2", dest: "/etc/init.d/unicorn_{{ app }}", mode: "0744", owner: "{{ unicorn_user }}", group: "{{ unicorn_user }}" }

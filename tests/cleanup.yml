@@ -12,17 +12,17 @@
 
   tasks:
     - name: delete digital ocean droplet
-      digital_ocean: >
-          id={{ ofn_deployment_droplet_id }}
-          state=deleted
-          client_id={{ ansible_env.DO_CLIENT_ID }}
-          api_key={{ ansible_env.DO_API_KEY }}
+      digital_ocean:
+          id: "{{ ofn_deployment_droplet_id }}"
+          state: deleted
+          client_id: "{{ ansible_env.DO_CLIENT_ID }}"
+          api_key: "{{ ansible_env.DO_API_KEY }}"
 
     - name: delete ofndeploy_key
-      digital_ocean_sshkey: >
-          state=absent
-          id={{ ofn_deployment_key_id }}
-          name={{ ofn_deployment_key_name }}
-          client_id={{ ansible_env.DO_CLIENT_ID }}
-          api_key={{ ansible_env.DO_API_KEY }}
+      digital_ocean_sshkey:
+          state: absent
+          id: "{{ ofn_deployment_key_id }}"
+          name: "{{ ofn_deployment_key_name }}"
+          client_id: "{{ ansible_env.DO_CLIENT_ID }}"
+          api_key: "{{ ansible_env.DO_API_KEY }}"
 
